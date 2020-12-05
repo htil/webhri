@@ -63,13 +63,14 @@ class BaxterWeb(object):
         print("Running. Ctrl-c to quit")
 
     def panMessage(self, msg):
+        print("Recent pan angle: " + msg.data)
         self.baxterHead.pan(msg.data, 0.3, 10.0)
 
     def faceMessage(self, msg):
+        print("Recent face: " + msg.data)
         self.baxterDisplay.send_image(msg.data)
 
     def start(self):
-        #self.server.start(self.webMessage)
         self.client.run_forever()
 
 def main():
