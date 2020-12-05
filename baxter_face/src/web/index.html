@@ -18,13 +18,28 @@
 <script src="https://unpkg.com/blockly/msg/en.js"></script>
 <script src="js/wait_block.js"></script>
 <script src="js/ros.js"></script>
+<script src="js/blocklyinterface.js"></script>
 <script src="js/baxter.js"></script>
 <script src="js/main.js"></script>
 </head>
-<body>
+<body style="background-color: lightgrey;">
+  
+<div style="position: absolute; right: 10px; top: 20px">
+  <button id="runButton" class="huge circular ui green icon button" style="display: inherit, margin-left: auto">
+    <i class="icon play"></i>
+  </button>
+</div>
 
-<div class="ui two column doubling stackable grid" style="background-color: blue; margin: 0px !important; width: 100%; height: 100%">
-  <div class="column" style="background-color: lightgrey; width:25%">
+
+<div style="position: absolute; right: 10px; top: 80px">
+  <button id="runButton" class="huge circular ui red icon button" style="display: inherit, margin-left: auto">
+    <i class="icon stop"></i>
+  </button>
+</div>
+
+
+<div class="ui two column doubling stackable grid" style="margin: 0px !important; width: 100%; height: 100%">
+  <div class="column" style="background-color: lightgrey; width:23%">
     <div class="ui raised card centered" style="width: 100%">
       <img class="ui fluid image" src="http://0.0.0.0:8080/stream?topic=/bax/cam/image_raw">
     </div>
@@ -42,9 +57,12 @@
       </button>
     </div>
   </div>
-  <div class="column">
+  <div class="column" style="background-color: lightgrey; width: 73%;">
+    <div id="blocklyDiv"  style=" height: 100%; width: 100%"></div>
   </div>
 </div>
+
+
 
 
 <div class="ui one column doubling stackable grid" style="display:none; background-color: rgb(248, 247, 247); margin: 0px !important; width: 100%; height: 100%; padding: 0px">
@@ -65,5 +83,110 @@
 </div>
   
 </div>
+
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+  <category name="Logic" colour="%{BKY_LOGIC_HUE}">
+    <block type="controls_if"></block>
+    <block type="controls_ifelse"></block>
+    <block type="logic_compare"></block>
+    <block type="logic_operation"></block>
+    <block type="logic_negate"></block>
+    <block type="logic_boolean"></block>
+  </category>
+  <category name="Loops" colour="%{BKY_LOOPS_HUE}">
+    <block type="controls_repeat_ext">
+      <value name="TIMES">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+    </block>
+    <block type="controls_whileUntil"></block>
+    <block type="wait_seconds"></block>
+  </category>
+  <category name="Robot" colour="355">
+    <block type="pan_by"></block>
+  </category>
+  <category name="Math" colour="%{BKY_MATH_HUE}">
+    <block type="math_number">
+      <field name="NUM">123</field>
+    </block>
+    <block type="math_random_float"></block>
+    <block type="math_arithmetic"></block>
+    <block type="math_single"></block>
+    <block type="math_change"></block>
+  </category>
+  <category name="Text" colour="%{BKY_TEXTS_HUE}">
+    <block type="text"></block>
+    <block type="text_length"></block>
+    <block type="text_print"></block>
+    <block type="text_prompt_ext">
+      <value name="TEXT">
+        <block type="text"></block>
+      </value>
+    </block>
+  </category>
+  <sep></sep>
+  <category name="Variables" custom="VARIABLE" colour="%{BKY_VARIABLES_HUE}">
+  </category>
+  <category name="Functions" custom="PROCEDURE" colour="%{BKY_PROCEDURES_HUE}">
+  </category>
+</xml>
+
+<xml xmlns="https://developers.google.com/blockly/xml" id="startBlocks" style="display: none">
+  <block type="variables_set" id="set_n_initial" inline="true" x="20" y="20">
+    <field name="VAR">n</field>
+    <value name="VALUE">
+      <block type="math_number">
+        <field name="NUM">1</field>
+      </block>
+    </value>
+    <next>
+      <block type="controls_repeat_ext" id="repeat" inline="true">
+        <value name="TIMES">
+          <block type="math_number">
+            <field name="NUM">4</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="wait_seconds" id="wait">
+            <field name="SECONDS">1.0</field>
+            <next>
+              <block type="variables_set" id="set_n_update" inline="true">
+                <field name="VAR">n</field>
+                <value name="VALUE">
+                  <block type="math_arithmetic" inline="true">
+                    <field name="OP">MULTIPLY</field>
+                    <value name="A">
+                      <block type="variables_get">
+                        <field name="VAR">n</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="math_number">
+                        <field name="NUM">2</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print" id="print" inline="false">
+                    <value name="TEXT">
+                      <block type="variables_get">
+                        <field name="VAR">n</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>
+
+
 </body>
 </html>
