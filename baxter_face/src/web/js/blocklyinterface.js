@@ -1,35 +1,3 @@
-var createCustomBlocks = function(){
-    var mathChangeJson = {
-        "message0": "pan by %1",
-        "args0": [
-          {"type": "input_value", "name": "ANGLE", "check": "Number"}
-        ],
-        "previousStatement": null,
-        "nextStatement": null,
-        "colour": 355
-      };
-      
-      Blockly.Blocks['pan_by'] = {
-        init: function() {
-          this.jsonInit(mathChangeJson);
-        }
-    };
-
-    Blockly.JavaScript['pan_by'] = function(block) {
-        var angle = Blockly.JavaScript.valueToCode(block, 'ANGLE',
-        Blockly.JavaScript.ORDER_NONE)
-
-        angle = angle > 1.5 ? 1.5 : angle
-        angle = angle < -1.5 ? -1.5 : angle
-
-        code = `pan(${angle})`
-        return code;
-    }
-}
-
-
-
-
 
 /** Class used to manage Blockly interface
  * @class
@@ -79,11 +47,18 @@ var BlocklyInterface = function(){
 
         // Create custom rappers 
         var wrapper = function(cmd) {
-            console.log("wrapper: ", cmd)
             window.pan(cmd)
         }
 
         interpreter.setProperty(globalObject, 'pan', 
+            interpreter.createNativeFunction(wrapper));
+
+
+        var wrapper = function(cmd) {
+            console.log(cmd)
+        }
+
+        interpreter.setProperty(globalObject, 'print', 
             interpreter.createNativeFunction(wrapper));
 
 
@@ -92,15 +67,15 @@ var BlocklyInterface = function(){
     }
 
     window.runBlocklyCode = function() {
-        console.log("latest Code: ", window.latestCode)
+        //console.log("latest Code: ", window.latestCode)
         window.interpreter = new Interpreter(window.latestCode, window.initApi);
         window.runner = function() {
             var hasMore =  window.interpreter.run();
-            console.log("hasMore: ", hasMore)
+            //console.log("hasMore: ", hasMore)
             if (hasMore) {
                 setTimeout(window.runner, 10);
             } else {
-                console.log("window.resetInterpreter")
+                //console.log("window.resetInterpreter")
                 window.resetInterpreter()
             }
         }
@@ -111,7 +86,7 @@ var BlocklyInterface = function(){
 }
 
 BlocklyInterface.prototype.init = function() {
-    console.log("Blockly interface started")
+    //console.log("Blockly interface started")
     window.generateCodeAndLoadIntoInterpreter()
     window.workspace.addChangeListener(function(event) {
         if (!(event instanceof Blockly.Events.Ui)) {
@@ -126,7 +101,7 @@ BlocklyInterface.prototype.init = function() {
 window.runBlockCode = function() {
    if (!window.interpreter){
        this.runButton = 'disabled'
-       console.log("setTimeout(window.runBlocklyCode, 1)")
+       //console.log("setTimeout(window.runBlocklyCode, 1)")
        setTimeout(window.runBlocklyCode, 1)
    }
 }

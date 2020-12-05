@@ -1,4 +1,4 @@
-/** Class used to manage robots 
+/** Class used to manage Baxter 
  * @class
 */
 var Baxter = function(){

@@ -18,6 +18,7 @@
 <script src="https://unpkg.com/blockly/msg/en.js"></script>
 <script src="js/wait_block.js"></script>
 <script src="js/ros.js"></script>
+<script src="js/customblock.js"></script>
 <script src="js/blocklyinterface.js"></script>
 <script src="js/baxter.js"></script>
 <script src="js/main.js"></script>
@@ -104,18 +105,18 @@
     <block type="controls_whileUntil"></block>
     <block type="wait_seconds"></block>
   </category>
-  <category name="Robot" colour="355">
-    <block type="pan_by"></block>
-  </category>
+  
   <category name="Math" colour="%{BKY_MATH_HUE}">
     <block type="math_number">
-      <field name="NUM">123</field>
+      <field name="NUM">0.0</field>
     </block>
     <block type="math_random_float"></block>
     <block type="math_arithmetic"></block>
     <block type="math_single"></block>
     <block type="math_change"></block>
+    
   </category>
+  <!--
   <category name="Text" colour="%{BKY_TEXTS_HUE}">
     <block type="text"></block>
     <block type="text_length"></block>
@@ -126,11 +127,25 @@
       </value>
     </block>
   </category>
+-->
+<category name="Variables" custom="VARIABLE" colour="%{BKY_VARIABLES_HUE}">
+</category>
   <sep></sep>
-  <category name="Variables" custom="VARIABLE" colour="%{BKY_VARIABLES_HUE}">
+  <category name="Physiological" colour="75">
+    <block type="alpha"></block>
+    <block type="print"></block>
   </category>
+  <category name="Affective" colour="325">
+    <block type="alpha"></block>
+  </category>
+  <category name="Robot" colour="355">
+    <block type="pan_by"></block>
+  </category>
+  <sep></sep>
+  <!--
   <category name="Functions" custom="PROCEDURE" colour="%{BKY_PROCEDURES_HUE}">
   </category>
+-->
 </xml>
 
 <xml xmlns="https://developers.google.com/blockly/xml" id="startBlocks" style="display: none">
