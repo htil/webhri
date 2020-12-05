@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Based on demo found here:
+http://wiki.ros.org/roslibjs/Tutorials/BasicRosFunctionality
+http://wiki.ros.org/roslibjs/Tutorials/BasicRosFunctionality
+-->
+
+<!--
+The next two lines bring in the JavaScript files that support rosbridge integration.
+-->
+<script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+<script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+<script async src="https://docs.opencv.org/3.4/opencv.js" type="text/javascript"></script>
+<script type="text/javascript" type="text/javascript">
+
+// This function connects to the rosbridge server running on the local computer on port 9090
+var rbServer = new ROSLIB.Ros({
+    url : 'ws://localhost:9090'
+ });
+
+ // This function is called upon the rosbridge connection event
+ rbServer.on('connection', function() {
+     // Write appropriate message to #feedback div when successfully connected to rosbridge
+     var fbDiv = document.getElementById('feedback');
+     fbDiv.innerHTML += "<p>Connected to websocket server.</p>";
+ });
+
+// This function is called when there is an error attempting to connect to rosbridge
+rbServer.on('error', function(error) {
+    // Write appropriate message to #feedback div upon error when attempting to connect to rosbridge
+    var fbDiv = document.getElementById('feedback');
+    fbDiv.innerHTML += "<p>Error connecting to websocket server.</p>";
+});
+
+// This function is called when the connection to rosbridge is closed
+rbServer.on('close', function() {
+    // Write appropriate message to #feedback div upon closing connection to rosbridge
+    var fbDiv = document.getElementById('feedback');
+    fbDiv.innerHTML += "<p>Connection to websocket server closed.</p>";
+ });
+
+ var baxterClient = new ROSLIB.ActionClient({
+   ros : rbServer,
+   serverName : '/baxterFace',
+   actionName : 'actionlib_tutorials/FibonacciAction'
+ });
+
+ var goal = new ROSLIB.Goal({
+   actionClient : baxterClient,
+   goalMessage : {
+     order : 7
+   }
+ });
+ goal.on('feedback', function(feedback) {
+   console.log('Feedback: ' + feedback.sequence);
+ });
+
+ goal.on('result', function(result) {
+   console.log('Final Result: ' + result.sequence);
+ });
+
+ rbServer.on('connection', function() {
+   console.log('Connected to websocket server.');
+ });
+
+ rbServer.on('error', function(error) {
+   console.log('Error connecting to websocket server: ', error);
+ });
+
+ rbServer.on('close', function() {
+   console.log('Connection to websocket server closed.');
+ });
+
+
+function pubMessage(){
+  goal.send();
+}
+</script>
+</head>
+
+<body>
+<form name="ctrlPanel">
+<h1>Baxter's Face</h1>
+<iframe src="http://0.0.0.0:8080/stream_viewer?topic=/bax/cam/image_raw" width="750" height="750">
+</iframe>
+<button id="sendMsg" type="button" onclick="pubMessage()">Publish Image</button>
+</form>
+<div id="feedback"></div>
+</body>
+</html>

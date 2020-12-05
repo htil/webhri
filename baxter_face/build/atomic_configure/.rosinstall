@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/htil/ros_ws/src/baxter_face/build/devel/setup.sh
