@@ -123,7 +123,7 @@ $ rosrun baxter_examples joint_velocity_wobbler.py
 
 ## Replace the baxter.world file 
 
-Replace the baxter.world file with the one provided in the repository because it contains the camera needed to view Baxter's face (file located [ros_ws -> src -> bacter_simulator -> baxter_gazebo -> worlds_]).  *This does not launch the world *
+Replace the baxter.world file with the one provided in the repository because it contains the camera needed to view Baxter's face (file located [ros_ws -> src -> baxter_simulator -> baxter_gazebo -> worlds_]).  *This does not launch the world *
 
 1. Launching Baxter:
 
