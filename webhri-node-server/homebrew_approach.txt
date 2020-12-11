@@ -1,0 +1,8 @@
+Tap Homebrew Drivers Cask
+brew tap homebrew/cask-drivers
+
+Install the FTDI USB dongle driver
+brew cask install ftdi-vcp-driver
+
+Install OpenBCI GUI
+brew cask install openbci-gui
