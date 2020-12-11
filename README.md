@@ -348,6 +348,7 @@ Gazebo: http://gazebosim.org/tutorials?cat=get_started
 
 ## Tips
 Creating .sh to run commnads make starting the simulation quicker.(A few have been included in this repository. You will need to give them executable permissions.)
+
 When changing networking enviorments you will need to update baxter.sh with your new IP address. 
 ## Demo
 <a href="https://drive.google.com/file/d/1cztPJXZhYw7YmrD9DhBlbYk9OOiZN7jZ/view?usp=sharing" target="_blank"><img src="http://img.https://youtu.be/Jun_jPxmSTo.jpg" 
