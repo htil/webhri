@@ -115,11 +115,11 @@ $ rosrun baxter_tools enable_robot.py -e
 $ rosrun baxter_examples joint_velocity_wobbler.py
 ```
 ## Issues? 
-[link to Helpful Links!](https://github.com/htil/BaxterWeb/blob/main/README.md#helpful-links-for-installation-of-baxter-simulation)
+[link to Helpful Links!](https://github.com/htil/webhri#helpful-links-for-installation-of-baxter-simulation)
 
 # Running the program for Baxter in the Web
 *Refer to Addtional Dependencies to install remainder components*
-[link to Addtional dependencies](https://github.com/htil/BaxterWeb/blob/main/README.md#addtional-dependencies)
+[link to Addtional dependencies](https://github.com/htil/webhri#addtional-dependencies)
 
 ## Replace the baxter.world file 
 
