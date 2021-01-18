@@ -3,7 +3,7 @@
 If you use WebHRI in a published work, please reference this paper:
  
 Johnson, B., Hernández-Cuevas, B., Singh, S., Crawford, C.S., Vishesh, V., Denham, A., 2020, March. 
- Towards Web-based Environments for Prototyping Social Robot Applications. In 2021 16th ACM/IEEE International Conference on Human-Robot Interaction."
+ Towards Web-based Environments for Prototyping Social Robot Applications. In 2021 16th ACM/IEEE International Conference on Human-Robot Interaction.
 
 # Installing Ubuntu 16.04
 
