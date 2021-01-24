@@ -99,12 +99,12 @@ $ rosrun baxter_examples joint_velocity_wobbler.py
 ## Issues? 
 [link to Helpful Links!](https://github.com/htil/webhri#helpful-links-for-installation-of-baxter-simulation)
 
-# Running the program for Baxter in the Web
+# Running the program WebHRI
 *Refer to Addtional Dependencies to install remainder components*
 [link to Addtional dependencies](https://github.com/htil/webhri#addtional-dependencies)
 
 ## Replace the baxter.world file 
-
+*Following commands are for the host machine.*
 Replace the baxter.world file with the one provided in the repository because it contains the camera needed to view Baxter's face (file located [ros_ws -> src -> baxter_simulator -> baxter_gazebo -> worlds_]).  *This does not launch the world *
 
 1. Launching Baxter:
@@ -144,12 +144,12 @@ Replace the baxter.world file with the one provided in the repository because it
      `./baxter.sh sim`
      
     *Change to the directory to where your python file is located*
-    python (name of your python file)
+    python baxterweb.py (<-- python file located in this repo)
     
     
 ## WebHRI Lauching Browswer Interface
 
-***The following must be ran on a different machine not running the baxter simulation.
+*The following commands must be ran on a different machine not running the baxter simulation.*
 
 ### Start node server
 
@@ -202,6 +202,8 @@ Replace the baxter.world file with the one provided in the repository because it
     pip install roslibpy
     
 ### Installing node dependencies
+
+*The following commands must be ran on a different machine not running the baxter simulation.*
 
 - Download the `webhri-node-server` located in this repo
 - navigate to `webhri-node-server`
