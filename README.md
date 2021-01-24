@@ -5,6 +5,8 @@ If you use WebHRI in a published work, please reference this paper:
 Johnson, B., Hernández-Cuevas, B., Singh, S., Crawford, C.S., Vishesh, V., Denham, A., 2020, March. 
  Towards Web-based Environments for Prototyping Social Robot Applications. In 2021 16th ACM/IEEE International Conference on Human-Robot Interaction.
 
+`please help us improve the docs by sending us an email`
+
 # Installing Ubuntu 16.04
 
 Download Ubuntu the IOS file
@@ -78,38 +80,13 @@ If not, simply put “kinetic”
 
 Save and close the baxter.sh script.
 
-**_Initialize your SDK environment_**
-
-```
-$ source /opt/ros/kinetic/setup.bash
-
-$ cd ~/ros_ws/
-
-$ ./baxter.sh 
-
-(you will get [baxter - [http://011605P0035.local:11311]](http://011605P0035.local:11311]) user@comp.name:~/ros_ws$)
-
-$ roslaunch baxter_gazebo baxter_world.launch
-
-```
-Open a new terminal window:
-```
-$ source /opt/ros/kinetic/setup.bash
-
-$ cd ~/ros_ws/
-
-$ ./baxter.sh sim 
-
-(you will get [baxter - [http://011605P0035.local:11311]](http://011605P0035.local:11311]) user@comp.name:~/ros_ws$)
-
-$ rosrun baxter_tools enable_robot.py -e
 
 ```
 *If you want to exit the simulation you will need to run killall gzserver and then hit ctrl +
 c to close out of the simulation( ctrl + c must be executed in the window running the
 simulation I.e the roslaunch command)
-
-*roslaunch only needs to be ran if you want run the simulator of Baxter.
+```
+*roslaunch baxter_gazebo baxter_world.launch only needs to be ran if you want run the simulator of Baxter.
 
 ### Enable the Robot
 ```
@@ -169,10 +146,22 @@ Replace the baxter.world file with the one provided in the repository because it
     *Change to the directory to where your python file is located*
     python (name of your python file)
     
-5. Viewing in Web:
+    
+## WebHRI Lauching Browswer Interface
 
-   To test to see if everything is running correctly visit: http://0.0.0.0:8080/ and navigate to /bax/cam/image_raw
-   *You should see Baxter's Face with a Rethink Robotics logo*
+***The following must be ran on a different machine not running the baxter simulation.
+
+### Start node server
+
+- run `node index.js`
+
+*You will want to change the port number to something other than 8080.
+
+### Navigate to WebHRI interface
+
+- Open `http://localhost:8080/` in chrome
+- Make sure `ros.js` and camera references in your `index.html` file are set to your ip address
+- Note: The two machines must be on the same network    
    
 # Addtional dependencies 
 
@@ -211,6 +200,12 @@ Replace the baxter.world file with the one provided in the repository because it
 ### Install roslibpy
 
     pip install roslibpy
+    
+### Installing node dependencies
+
+- Download the `webhri-node-server` located in this repo
+- navigate to `webhri-node-server`
+- run `npm install`
 
 # Quick Commands
 
@@ -253,7 +248,7 @@ Writing programs: https://sdk.rethinkrobotics.com/wiki/Foundations#Writing_Progr
 
 2. Place this at the top of your file before you begin —> #!/usr/bin/env python
 
-3. Import your basic stuf
+3. Import your basic stuff
 
     a. Import rospy #this is ROS Python API
     
@@ -355,6 +350,3 @@ Gazebo: http://gazebosim.org/tutorials?cat=get_started
 Creating .sh to run commnads make starting the simulation quicker.(A few have been included in this repository. You will need to give them executable permissions.)
 
 When changing networking enviorments you will need to update baxter.sh with your new IP address. 
-## Demo
-<a href="https://drive.google.com/file/d/1cztPJXZhYw7YmrD9DhBlbYk9OOiZN7jZ/view?usp=sharing" target="_blank"><img src="http://img.https://youtu.be/Jun_jPxmSTo.jpg" 
-alt="Demo of Baxter in the Web" width="240" height="180" border="10" /></a>
